@@ -1,0 +1,103 @@
+#############################################################################
+##
+##  configuration for my personal backup script
+##
+#############################################################################
+
+
+# ---------------------------------------------------------------------------
+#  initializations
+# ---------------------------------------------------------------------------
+
+# what's our hostname
+WHO=$(hostname -s)
+
+# a nice date stamp
+DATE=$(date +%Y-%m-%d)
+
+# where do we save the backup
+TARGET="/backup"
+
+# which directories to backup
+BACKUP="
+/etc
+/home
+/log
+/root
+/usr/local
+/var/www
+"
+
+# split the back into one file per directory
+SPLIT="yes"
+
+# how long do we keep the old backups
+CLEANUP="no"
+DAYS="30"
+
+# who should own the backup files
+OWNER="richard"
+GROUP="richard"
+
+# how to we compress the backup
+TAR_OPT="zcvf"        # very fast but not very compact
+TAR_EXT="tar.gz"
+#TAR_OPT="jcvf"       # somewhere in the middle
+#TAR_EXT="tar.bzip2"
+#TAR_OPT="Jcvf"       # very good compression but takes forever to finish
+#TAR_EXT="tar.xz"
+
+# ---------------------------------------------------------------------------
+#  settings for mysql/mariadb
+#
+#  the database password should be the same for all databases and the file
+#  .my.cnf should be created in the home directory of the user root with
+#  the following content:
+#
+#  [client]
+#  password="secret"
+#
+#  [mysql]
+#  no-auto-rehash
+#  connect_timeout=2
+# ---------------------------------------------------------------------------
+
+MYSQL="no"
+MY_DB="database1 database2 database3"
+MY_HOST="localhost"
+MY_PORT="3306"
+MY_USER="mysql"
+
+
+# ---------------------------------------------------------------------------
+#  settings for postgresql
+# ---------------------------------------------------------------------------
+
+POSTGRESQL="no"
+PG_DB="datebase1 database2 database3"
+PG_HOST="localhost"
+PG_PORT="5432"
+PG_USER="postgres"
+PG_PW="secret" # still need to find a way to hash this
+
+
+# ---------------------------------------------------------------------------
+# copy to a remote location
+# ---------------------------------------------------------------------------
+
+# make sure to have the ssh finger print and ssh keys in place
+REMOTE_COPY="no"
+REMOTE_HOST="192.168.33.10"
+REMOTE_USER="richard"
+REMOTE_DIR="/data/$WHO"
+
+
+# ---------------------------------------------------------------------------
+#  send a notification by email
+# ---------------------------------------------------------------------------
+
+EMAIL_SEND="no"
+EMAIL_ADDRESS="one@example.com two@example.com"
+
+
+### eof #####################################################################
