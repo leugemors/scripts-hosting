@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #############################################################################
 ##
 ##  download and install all available updates

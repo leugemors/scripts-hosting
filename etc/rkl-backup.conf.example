@@ -21,10 +21,8 @@ TARGET="/backup"
 # which directories to backup
 BACKUP="
 /etc
-/home
-/log
-/root
 /usr/local
+/var/log
 /var/www
 "
 

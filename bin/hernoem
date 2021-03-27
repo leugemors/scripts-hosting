@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #############################################################################
 ##
 ## rename files to lowercase and remove unnessessary spaces

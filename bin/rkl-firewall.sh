@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #############################################################################
 ##
 ##  configuring an iptables firewall on ubuntu systems (with ufw)
