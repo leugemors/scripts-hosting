@@ -27,5 +27,6 @@ Place this in the http tag
     #NL yes;
   }
 
+  # hide nginx version number
   server_tokens off;
 
