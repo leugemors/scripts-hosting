@@ -5,6 +5,7 @@
 ##
 #############################################################################
 
+
 # ---------------------------------------------------------------------------
 #  check if we are root
 # ---------------------------------------------------------------------------
@@ -16,11 +17,21 @@ fi
 
 
 # ---------------------------------------------------------------------------
-#  initializations
+#  check if we are on a ubuntu/mint system
 # ---------------------------------------------------------------------------
 
 APT=$(which apt-get)
 INSTALL="$APT -y install"
+
+if [ -z $APT ]; then
+  printf "\nERROR: Cannot find apt-get, are you sure this is Ubuntu/Mint?\n\n"
+  exit 1
+fi
+
+
+# ---------------------------------------------------------------------------
+#  what are we going to install
+# ---------------------------------------------------------------------------
 
 INSTALL_WEB_SERVER="yes"
 INSTALL_PHP="yes"
@@ -28,7 +39,7 @@ INSTALL_DATABASE="yes"
 
 
 # ---------------------------------------------------------------------------
-#  install all available updates
+#  first install all available updates
 # ---------------------------------------------------------------------------
 
 $APT update
@@ -36,15 +47,7 @@ $APT -y dist-upgrade
 
 
 # ---------------------------------------------------------------------------
-#  fix locale issues for perl
-# ---------------------------------------------------------------------------
-
-#locale-gen en_US en_US.UTF-8
-#dpkg-reconfigure locales
-
-
-# ---------------------------------------------------------------------------
-#  first install some esential packages
+#  install some essential packages
 # ---------------------------------------------------------------------------
 
 $INSTALL binutils
@@ -72,7 +75,7 @@ $INSTALL zip
 
 
 # ---------------------------------------------------------------------------
-#  install webserver
+#  install the webserver
 # ---------------------------------------------------------------------------
 
 if [ $INSTALL_WEB_SERVER = "yes" ]; then
@@ -106,10 +109,10 @@ fi
 
 
 # ---------------------------------------------------------------------------
-#  install database
+#  install the database
 # ---------------------------------------------------------------------------
 
-if [ $INSTALL_DATABASE = "yes" ] ; then
+if [ $INSTALL_DATABASE = "yes" ]; then
   $INSTALL mariadb-server
   systemctl start mariadb.service
   systemctl enable mariadb.service
@@ -117,4 +120,4 @@ if [ $INSTALL_DATABASE = "yes" ] ; then
 fi
 
 
-### EOF #####################################################################
+### eof #####################################################################
