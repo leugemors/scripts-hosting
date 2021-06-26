@@ -7,7 +7,7 @@
 
 if [ "$1" = "" ]
 then
-  echo "Usage: list.sh package_name"
+  echo "Usage: $0 package_name"
 else
   echo -e "\nZOEKRESULTATEN\n=============="
   dpkg -l | grep $1 | sort
