@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 #############################################################################
 ##
-## rename files to lowercase and remove unnessessary spaces
+##  simple script to find duplicate files
 ##
 #############################################################################
 
-ls | while read -r FILE
-do
-  mv -v "$FILE" `echo $FILE | tr ' ' '_' | tr -d '[{}(),\!]' | tr -d "\'" | tr '[A-Z]' '[a-z]' | sed 's/_-_/-/g'`
-done
+find . -type f -exec md5sum '{}' ';' | sort | uniq --all-repeated=separate -w 15 > dupes.txt
+
 
 ### eof #####################################################################
