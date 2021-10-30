@@ -5,7 +5,7 @@
 ##
 #############################################################################
 
-VERSION="0.22"
+VERSION="0.23"
 
 # ---------------------------------------------------------------------------
 #  print a simple header
@@ -86,17 +86,16 @@ function Initializations()
     hollywood linuxlogo pi sl sysvbanner"
 
   # media play everything
-  MEDIA="ubuntu-restricted-extras ffmpeg gxine libdvdread4 icedax tagtool \
-    libdvd-pkg easytag id3tool lame libxine2-ffmpeg libmad0 mpg321 \
-    libavcodec-extra gstreamer1.0-libav"
+  MEDIA="ubuntu-restricted-extras ffmpeg icedax libdvd-pkg easytag id3tool \
+    lame libxine2-ffmpeg mpg321 libavcodec-extra gstreamer1.0-libav"
 
   # network and security tools
   NETTOOLS="chkrootkit cifs-utils davfs2 iftop iotop nfs-common nmap \
     openssh-server traceroute unhide whois"
 
-  # python 3
-  PYTHON="python3.8 python3-pip python3-setuptools python3-wheel python3-autopep8 \
-    python3-pandas python3-pyglet"
+  # python3
+  PYTHON="python3.8 python3-pip python3-autopep3 python3-setuptools \
+    python3-wheel"
 
   # various handy tools
   TOOLS="apcalc c3270 dbview gddrescue hardinfo hexedit htop lynx mc ncdu \
@@ -106,9 +105,8 @@ function Initializations()
   WIFI="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
 
   # stuff for x
-  XTOOLS="bleachbit cheese gparted gufw openclipart p7zip p7zip-rar pinta \
-    ubuntu-restricted-extras vim-gtk3 vlc vokoscreen x3270 xfonts-x3270-misc \
-    xsane"
+  XTOOLS="bleachbit cheese gnote gparted gufw p7zip p7zip-rar pinta remmina \
+    vim-gtk3 vlc vokoscreen x3270 xfonts-x3270-misc xsane"
 
   # archive (zip) tools
   ZIP="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
