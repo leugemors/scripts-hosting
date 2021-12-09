@@ -51,26 +51,21 @@ $APT -y dist-upgrade
 # ---------------------------------------------------------------------------
 
 $INSTALL binutils
-$INSTALL certbot
+$INSTALL fail2ban
 $INSTALL figlet
-$INSTALL hardinfo
-$INSTALL host
 $INSTALL htop
 $INSTALL iftop
 $INSTALL iotop
 $INSTALL lynx
-$INSTALL man 
 $INSTALL mc
 $INSTALL mlocate
 $INSTALL mutt
-$INSTALL python3-certbot-nginx
+$INSTALL net-tools
 $INSTALL tasksel
 $INSTALL traceroute
-$INSTALL ufw 
 $INSTALL unhide
 $INSTALL unzip
 $INSTALL vim 
-$INSTALL whois
 $INSTALL zip
 
 
@@ -80,6 +75,8 @@ $INSTALL zip
 
 if [ $INSTALL_WEB_SERVER = "yes" ]; then
   $INSTALL nginx
+  $INSTALL certbot
+  $INSTALL python3-certbot-nginx
   systemctl start nginx.service
   systemctl enable nginx.service
 fi
