@@ -89,19 +89,19 @@ fi
 if [ $INSTALL_PHP = "yes" ]; then
   add-apt-repository -y ppa:ondrej/php
   $APT update
-  $INSTALL php7.4-cgi
-  $INSTALL php7.4-curl
-  $INSTALL php7.4-fpm
-  $INSTALL php7.4-gd
-  $INSTALL php7.4-imagick
-  $INSTALL php7.4-json
-  $INSTALL php7.4-mbstring
-  $INSTALL php7.4-mysql
-  $INSTALL php7.4-opcache
-  $INSTALL php7.4-xml
-  $INSTALL php7.4-zip
-  systemctl start php7.4-fpm.service
-  systemctl enable php7.4-fpm.service
+  $INSTALL php8.1-cgi
+  $INSTALL php8.1-curl
+  $INSTALL php8.1-fpm
+  $INSTALL php8.1-gd
+  $INSTALL php8.1-imagick
+  $INSTALL php8.1-json
+  $INSTALL php8.1-mbstring
+  $INSTALL php8.1-mysql
+  $INSTALL php8.1-opcache
+  $INSTALL php8.1-xml
+  $INSTALL php8.1-zip
+  systemctl start php8.1-fpm.service
+  systemctl enable php8.1-fpm.service
 fi
 
 
