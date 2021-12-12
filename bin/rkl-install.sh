@@ -5,7 +5,7 @@
 ##
 #############################################################################
 
-VERSION="0.23"
+VERSION="0.24"
 
 # ---------------------------------------------------------------------------
 #  print a simple header
@@ -31,8 +31,10 @@ Usage:
 
 Valid options are:
   -h   Show this help screen
-  -8   OpenJDK Java 8
-  -1   OpenJDK Java 11
+  -1   OpenJDK Java 11 (LTS)
+  -3   OpenJDK Java 13
+  -6   OpenJDK Java 16
+  -7   OpenJDK Java 17
   -d   Developper tools
   -f   Some fun stuff
   -m   Media stuff to play everything
@@ -42,7 +44,7 @@ Valid options are:
   -w   WiFi network tools
   -x   Extra packages for x
   -z   Archive (zip) tools
-  -a   All of the above (only java 11)
+  -a   All of the above (only Java 11 LTS)
 
 EOF
 exit 1
@@ -73,8 +75,10 @@ function Initializations()
   INSTALL="$APTGET -y install"
 
   # java runtime environment and browser plugin
-  JAVA8="openjdk-8-jre openjdk-8-jdk"
   JAVA1="openjdk-11-jre openjdk-11-jdk"
+  JAVA3="openjdk-13-jre openjdk-13-jdk"
+  JAVA6="openjdk-16-jre openjdk-16-jdk"
+  JAVA7="openjdk-17-jre openjdk-17-jdk"
 
   # packages for developping
   DEVELOP="ant automake build-essential bison curl exuberant-ctags flex \
@@ -176,8 +180,10 @@ while getopts "h81dfmnptwxza" OPTION; do
   case "$OPTION" in
 
     h) ShowHelp ;;
-    8) PACKAGES=$JAVA8 ;;
     1) PACKAGES=$JAVA1 ;;
+    3) PACKAGES=$JAVA3 ;;
+    6) PACKAGES=$JAVA6 ;;
+    7) PACKAGES=$JAVA7 ;;
     d) PACKAGES=$DEVELOP ;;
     f) PACKAGES=$FUN ;;
     m) PACKAGES=$MEDIA ;;
