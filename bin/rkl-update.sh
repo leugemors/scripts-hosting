@@ -1,62 +1,47 @@
 #!/usr/bin/env bash
 #############################################################################
 ##
-##  download and install all available updates
+##  download and install all available updates on a debian/ubuntu system
 ##
 #############################################################################
 
+set -eu
 
 # ---------------------------------------------------------------------------
 #  check if we are root
 # ---------------------------------------------------------------------------
 
-if [ $UID != 0 ]; then
-  printf "\nERROR: You need to be root to run this script!\n\n"
-  exit 1
+if [ "${UID}" != 0 ]; then
+    echo "ERROR: You need to be root to run this script."
+    exit 1
 fi
-
 
 # ---------------------------------------------------------------------------
 #  initializations
 # ---------------------------------------------------------------------------
 
-APT=$(which apt-get)
+apt=$(command -v apt-get)
 
-if [ -z $APT ]; then
-  printf "\nERROR: Cannot find apt-get, are you sure this is Ubuntu/Mint?\n\n"
-  exit 1
+if [ -z "${apt}" ]; then
+    echo "ERROR: Cannot find apt-get."
+    exit 1
 fi
-
 
 # ---------------------------------------------------------------------------
 #  download and install the updates
 # ---------------------------------------------------------------------------
 
-$APT update
-$APT -y dist-upgrade
-
-
-# ---------------------------------------------------------------------------
-#  remove obsolete packages
-# ---------------------------------------------------------------------------
-
-$APT -y autoremove
-
-
-# ---------------------------------------------------------------------------
-#  maintain the local cache
-# ---------------------------------------------------------------------------
-
-$APT autoclean
-
+${apt} update              # update the local cache
+${apt} -y dist-upgrade     # download and install all available updates
+${apt} -y autoremove       # remove obsolete packages
+${apt} autoclean           # clean-up the local update cache
 
 # ---------------------------------------------------------------------------
 #  check if we need to reboot the system
 # ---------------------------------------------------------------------------
 
 if [ -f /var/run/reboot-required ]; then
-  printf "\nINFO: You need to reboot your system to finish the updates!\n\n"
+    echo "INFO: You need to reboot your system to finish the updates."
 fi
-
 
 ### eof #####################################################################
