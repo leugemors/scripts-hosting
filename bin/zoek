@@ -6,11 +6,11 @@
 #############################################################################
 
 if [ "$1" = "" ]; then
-  echo "Usage: $0 package_name"
+    echo "Usage: $0 package_name"
 else
-  echo -e "\nZOEKRESULTATEN\n=============="
-  apt-cache search $1 | grep -i $1 | sort
-  echo ""
+    echo -e "\nZOEKRESULTATEN\n=============="
+    apt-cache search $1 | grep -i $1 | sort
+    echo ""
 fi
 
 ### eof #####################################################################

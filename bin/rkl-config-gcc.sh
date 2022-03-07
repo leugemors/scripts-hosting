@@ -5,16 +5,14 @@
 ##
 #############################################################################
 
-
 # ---------------------------------------------------------------------------
 #  check if we are root
 # ---------------------------------------------------------------------------
 
 if [ $UID != 0 ]; then
-  printf "\nERROR: You need to be root to run this script!\n\n"
-  exit 1
+    printf "\nERROR: You need to be root to run this script!\n\n"
+    exit 1
 fi
-
 
 # ---------------------------------------------------------------------------
 #  initializations
@@ -22,7 +20,6 @@ fi
 
 APTGET=`which apt-get`
 INSTALL="$APTGET -y install"
-
 
 # ---------------------------------------------------------------------------
 #  set up gcc
@@ -45,7 +42,6 @@ $INSTALL gcc-9 g++-9
 # install gcc and g++ version 10
 $INSTALL gcc-10 g++-10
 
-
 # ---------------------------------------------------------------------------
 #  add new alternatives
 # ---------------------------------------------------------------------------
@@ -63,15 +59,13 @@ update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 40
 #update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 60
 #update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 60
 
-
 # ---------------------------------------------------------------------------
 #  configure alternatives
 # ---------------------------------------------------------------------------
 
-update-alternatives --set gcc /usr/bin/gcc-9
-update-alternatives --set g++ /usr/bin/g++-9
+update-alternatives --set gcc /usr/bin/gcc-10
+update-alternatives --set g++ /usr/bin/g++-10
 update-alternatives --set cc /usr/bin/gcc
 update-alternatives --set c++ /usr/bin/g++
-
 
 ### eof #####################################################################
