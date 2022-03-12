@@ -20,10 +20,10 @@ fi
 #  initializations
 # ---------------------------------------------------------------------------
 
-apt=$(command -v apt-get)
+APTGET=$(command -v apt-get)
 
-if [ -z "${apt}" ]; then
-    echo "ERROR: Cannot find apt-get."
+if [ -z "${APTGET}" ]; then
+    echo "ERROR: Can't find apt-get, are you sure you're on an Ubuntu/Mint system?"
     exit 1
 fi
 
@@ -31,10 +31,10 @@ fi
 #  download and install the updates
 # ---------------------------------------------------------------------------
 
-${apt} update              # update the local cache
-${apt} -y dist-upgrade     # download and install all available updates
-${apt} -y autoremove       # remove obsolete packages
-${apt} autoclean           # clean-up the local update cache
+${APTGET} update              # update the local cache
+${APTGET} -y dist-upgrade     # download and install all available updates
+${APTGET} -y autoremove       # remove obsolete packages
+${APTGET} autoclean           # clean-up the local update cache
 
 # ---------------------------------------------------------------------------
 #  check if we need to reboot the system
