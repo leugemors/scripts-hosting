@@ -1,6 +1,6 @@
 #############################################################################
 ##
-##  configuration for my personal backup script
+##  configuration file for my personal backup script
 ##
 #############################################################################
 
@@ -25,10 +25,10 @@ BACKUP="
 /var/www
 "
 
-# split the back into one file per directory
+# split the backup into one file per directory
 SPLIT="yes"
 
-# how long do we keep the old backups
+# how long do we keep old backups
 CLEANUP="no"
 DAYS="30"
 
@@ -37,11 +37,17 @@ OWNER="richard"
 GROUP="richard"
 
 # how to we compress the backup
-TAR_OPT="zcvf"        # very fast but not very compact
+
+# very fast but not very compact
+TAR_OPT="zcvf"
 TAR_EXT="tar.gz"
-#TAR_OPT="jcvf"       # somewhere in the middle
+
+# somewhere in the middle
+#TAR_OPT="jcvf"
 #TAR_EXT="tar.bzip2"
-#TAR_OPT="Jcvf"       # very good compression but takes forever to finish
+
+# very good compression but takes forever to finish
+#TAR_OPT="Jcvf"
 #TAR_EXT="tar.xz"
 
 # ---------------------------------------------------------------------------
@@ -53,10 +59,6 @@ TAR_EXT="tar.gz"
 #
 #  [client]
 #  password="secret"
-#
-#  [mysql]
-#  no-auto-rehash
-#  connect_timeout=2
 # ---------------------------------------------------------------------------
 
 MYSQL="no"
@@ -78,13 +80,14 @@ PG_PW="secret" # still need to find a way to hash this
 
 # ---------------------------------------------------------------------------
 # copy to a remote location
+#
+# make sure to have the ssh finger print and ssh keys in place
 # ---------------------------------------------------------------------------
 
-# make sure to have the ssh finger print and ssh keys in place
 REMOTE_COPY="no"
 REMOTE_HOST="192.168.33.10"
 REMOTE_USER="richard"
-REMOTE_DIR="/data/$WHO"
+REMOTE_DIR="/data/${WHO}"
 
 # ---------------------------------------------------------------------------
 #  send a notification by email
