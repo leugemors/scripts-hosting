@@ -106,8 +106,8 @@ Initializations()
     WIFI="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
 
     # stuff for x
-    XTOOLS="bleachbit cheese gnote gparted gufw p7zip p7zip-rar pinta remmina \
-        vim-gtk3 vlc vokoscreen x3270 xfonts-x3270-misc xsane"
+    XTOOLS="bleachbit cheese flameshot gnote gparted gufw p7zip p7zip-rar \
+        pinta remmina vlc vokoscreen wireshark x3270 xfonts-x3270-misc"
 
     # archive (zip) tools
     ZIP="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
