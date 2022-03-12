@@ -5,7 +5,7 @@
 ##
 #############################################################################
 
-VERSION="0.25"
+VERSION="0.26"
 
 # ---------------------------------------------------------------------------
 #  print a simple header
@@ -14,7 +14,7 @@ VERSION="0.25"
 PrintHeader()
 {
     printf "\nInstall Tool v${VERSION}\n=================="
-    printf "\nSetup an Ubuntu or Mint Linux system for Developers.\n"
+    printf "\nSetup an Ubuntu or Mint GNU/Linux system for me.\n"
 }
 
 # ---------------------------------------------------------------------------
@@ -80,7 +80,7 @@ Initializations()
     # packages for developping
     DEVELOP="automake build-essential bison curl exuberant-ctags flex gawk \
         git gitk libaio1 libsvn-java libwebkitgtk-1.0-0 maven meld ml-yacc \
-        libtool subversion"
+        libtool shellcheck subversion"
 
     # some fun stuff
     FUN="ascii bb bsdgames cool-retro-term cowsay espeak fbi figlet fortune \
@@ -112,7 +112,7 @@ Initializations()
     # archive (zip) tools
     ZIP="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
 
-    # everything (only java11)
+    # everything (only java11 LTS)
     ALL="$JAVA1 $DEVELOP $FUN $MEDIA $NETTOOLS $PYTHON $TOOLS $WIFI $XTOOLS $ZIP"
 
     # make sure we can see all autostart apps
