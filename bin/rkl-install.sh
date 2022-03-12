@@ -80,8 +80,7 @@ Initializations()
 
     # packages for developping
     DEVELOP="automake build-essential bison curl exuberant-ctags flex gawk \
-        git gitk libaio1 libsvn-java libwebkitgtk-1.0-0 maven meld ml-yacc \
-        libtool shellcheck subversion"
+        git gitk libaio1 libsvn-java maven meld ml-yacc libtool shellcheck"
 
     # some fun stuff
     FUN="ascii bb bsdgames cool-retro-term cowsay espeak fbi figlet fortune \
