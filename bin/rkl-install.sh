@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 #############################################################################
 ##
-##  script to setup an ubuntu/mint linux system for developers
+##  script to setup an ubuntu/mint gnu/linux system
 ##
 #############################################################################
+
+set -eu
 
 VERSION="0.26"
 
@@ -13,8 +15,8 @@ VERSION="0.26"
 
 PrintHeader()
 {
-    printf "\nInstall Tool v${VERSION}\n=================="
-    printf "\nSetup an Ubuntu or Mint GNU/Linux system for me.\n"
+    printf "\nInstall Tool v%s\n==================", "${VERSION}"
+    printf "\nSetup an Ubuntu or Mint GNU/Linux system for my personal use.\n"
 }
 
 # ---------------------------------------------------------------------------
@@ -55,9 +57,8 @@ exit 1
 
 CheckRoot()
 {
-    if [ $UID != 0 ]; then
+    if [ "${UID}" != 0 ]; then
       printf "\nERROR : You need to be root to run this script!\n\n"
-      sudo $0
       exit 1
     fi
 }
@@ -68,8 +69,8 @@ CheckRoot()
 
 Initializations()
 {
-    APTGET=`which apt-get`
-    INSTALL="$APTGET -y install"
+    APTGET=$(command -v apt-get)
+    INSTALL="${APTGET} -y install"
 
     # java runtime environment and browser plugin
     JAVA1="openjdk-11-jre openjdk-11-jdk"
@@ -113,10 +114,12 @@ Initializations()
     ZIP="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
 
     # everything (only java11 LTS)
-    ALL="$JAVA1 $DEVELOP $FUN $MEDIA $NETTOOLS $PYTHON $TOOLS $WIFI $XTOOLS $ZIP"
+    ALL="${JAVA1} ${DEVELOP} ${FUN} ${MEDIA} ${NETTOOLS} ${PYTHON} ${TOOLS} \
+        ${WIFI} ${XTOOLS} ${ZIP}"
 
     # make sure we can see all autostart apps
-    sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop
+    sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" \
+        /etc/xdg/autostart/*.desktop
 }
 
 # ---------------------------------------------------------------------------
@@ -125,10 +128,10 @@ Initializations()
 
 InstallUpdates()
 {
-    $APTGET update
-    $APTGET -y dist-upgrade
-    $APTGET autoremove
-    $APTGET autoclean
+    ${APTGET} update
+    ${APTGET} -y dist-upgrade
+    ${APTGET} autoremove
+    ${APTGET} autoclean
 }
 
 # ---------------------------------------------------------------------------
@@ -137,8 +140,8 @@ InstallUpdates()
 
 InstallPackages()
 {
-    for PACKAGE in $PACKAGES; do
-        $INSTALL $PACKAGE
+    for PACKAGE in ${PACKAGES}; do
+        ${INSTALL} "${PACKAGE}"
     done
 }
 
@@ -152,41 +155,32 @@ PrintHeader
 CheckRoot
 Initializations
 
-# ---------------------------------------------------------------------------
-#  parse command line options
-# ---------------------------------------------------------------------------
-
 if [ "$1" = "" ]; then
     ShowHelp
 fi
 
-# ---------------------------------------------------------------------------
-#  do the magic
-# ---------------------------------------------------------------------------
-
-InstallUpdates
-
 while getopts "h1367dfmnptwxza" OPTION; do
 
-    case "$OPTION" in
+    case "${OPTION}" in
         h) ShowHelp ;;
-        1) PACKAGES=$JAVA1 ;;
-        3) PACKAGES=$JAVA3 ;;
-        6) PACKAGES=$JAVA6 ;;
-        7) PACKAGES=$JAVA7 ;;
-        d) PACKAGES=$DEVELOP ;;
-        f) PACKAGES=$FUN ;;
-        m) PACKAGES=$MEDIA ;;
-        n) PACKAGES=$NETTOOLS ;;
-        p) PACKAGES=$PYTHON ;;
-        t) PACKAGES=$TOOLS ;;
-        w) PACKAGES=$WIFI ;;
-        x) PACKAGES=$XTOOLS ;;
-        z) PACKAGES=$ZIP ;;
-        a) PACKAGES=$ALL ;;
+        1) PACKAGES=${JAVA1} ;;
+        3) PACKAGES=${JAVA3} ;;
+        6) PACKAGES=${JAVA6} ;;
+        7) PACKAGES=${JAVA7} ;;
+        d) PACKAGES=${DEVELOP} ;;
+        f) PACKAGES=${FUN} ;;
+        m) PACKAGES=${MEDIA} ;;
+        n) PACKAGES=${NETTOOLS} ;;
+        p) PACKAGES=${PYTHON} ;;
+        t) PACKAGES=${TOOLS} ;;
+        w) PACKAGES=${WIFI} ;;
+        x) PACKAGES=${XTOOLS} ;;
+        z) PACKAGES=${ZIP} ;;
+        a) PACKAGES=${ALL} ;;
         *) exit 1 ;;
     esac
 
+    InstallUpdates
     InstallPackages
 
 done
