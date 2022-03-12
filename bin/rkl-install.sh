@@ -99,8 +99,8 @@ Initializations()
         python3-wheel"
 
     # various handy tools
-    TOOLS="apcalc c3270 dbview gddrescue hardinfo hexedit htop lynx mc ncdu \
-        odt2txt tasksel tofrodos vim vim-scripts wipe tnef tree"
+    TOOLS="apcalc c3270 dbview gddrescue hardinfo hexedit htop lnav lynx mc \
+        ncdu odt2txt tasksel tofrodos vim vim-scripts wipe tnef tree"
 
     # wifi network tools
     WIFI="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
