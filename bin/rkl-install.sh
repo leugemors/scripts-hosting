@@ -78,9 +78,9 @@ Initializations()
     JAVA7="openjdk-17-jre openjdk-17-jdk"
 
     # packages for developping
-    DEVELOP="ant automake build-essential bison curl exuberant-ctags flex \
-        gawk git gitk libaio1 libsvn-java libwebkitgtk-1.0-0 maven meld \
-        ml-yacc libtool subversion"
+    DEVELOP="automake build-essential bison curl exuberant-ctags flex gawk \
+        git gitk libaio1 libsvn-java libwebkitgtk-1.0-0 maven meld ml-yacc \
+        libtool subversion"
 
     # some fun stuff
     FUN="ascii bb bsdgames cool-retro-term cowsay espeak fbi figlet fortune \
