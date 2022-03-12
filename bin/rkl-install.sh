@@ -95,7 +95,7 @@ Initializations()
         openssh-server traceroute unhide whois"
 
     # python3
-    PYTHON="python3.8 python3-pip python3-autopep3 python3-setuptools \
+    PYTHON="python3.8 python3-pip python3-autopep8 python3-setuptools \
         python3-wheel"
 
     # various handy tools
