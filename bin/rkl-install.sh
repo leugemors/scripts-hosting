@@ -179,10 +179,14 @@ while getopts "h1367dfmnptwxza" OPTION; do
         *) exit 1 ;;
     esac
 
+    printf "\n"
+
     InstallUpdates
     InstallPackages
 
 done
+
+printf "\nAll done!\n\n"
 
 exit 0
 
