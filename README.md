@@ -2,23 +2,12 @@
 Just some simple bash scripts for my own personal use.
 Don't think they will be useful to anyone else, but feel free to take a look.
 
-**dupes**
-: Find duplicates using MD5 hashes, recursivly starting from the current directory.
-
-**hernoem**
-Rename files to lowercase and remove all spaces and other junk.
-
-**list**
-Generate a list of all installed packages on my Linux system.
-
-**update**
-Script to install all available updates.
-
-**zoek**
-Make searching for packages in the repository a bit easier.
-
-**rkl-backup.sh**
-My personal backup tool. You will also need `rkl-backup.conf` form the `/etc` directory.
+**dupes**: Find duplicates using MD5 hashes, recursivly starting from the current directory.
+**hernoem**: Rename files to lowercase and remove all spaces and other junk.
+**list**: Generate a list of all installed packages on my Linux system.
+**update**: Script to install all available updates.
+**zoek**: Make searching for packages in the repository a bit easier.
+**rkl-backup.sh**: My personal backup tool. You will also need `rkl-backup.conf` form the `/etc` directory.
 
 **rkl-config-gcc.sh**
 Install all avaialble versions of GCC and update update-alternatives accordingly. Don't ask, but I needed this at some point.
