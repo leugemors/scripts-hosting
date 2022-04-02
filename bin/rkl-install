@@ -1,21 +1,26 @@
 #!/usr/bin/env bash
 #############################################################################
+##         _    _
+##    _ __| | _| |
+##   | '__| |/ / |   Richard Klein Leugemors
+##   | |  |   <| |   https://www.github.com/leugemors/
+##   |_|  |_|\_\_|
 ##
-##  script to setup an ubuntu/mint gnu/linux system
+##   script to setup an ubuntu/mint gnu/linux system
 ##
 #############################################################################
 
-set -eu
+set -eo pipefail
 
-VERSION="0.26"
+version="0.30"
 
 # ---------------------------------------------------------------------------
 #  print a simple header
 # ---------------------------------------------------------------------------
 
-PrintHeader()
+printHeader()
 {
-    printf "\nInstall Tool v%s\n==================", "${VERSION}"
+    printf "\nInstall Tool v%s\n==================", "${version}"
     printf "\nSetup an Ubuntu or Mint GNU/Linux system for my personal use.\n"
 }
 
@@ -23,7 +28,7 @@ PrintHeader()
 #  show some help
 # ---------------------------------------------------------------------------
 
-ShowHelp()
+showHelp()
 {
 cat << __EOT
 
@@ -55,11 +60,11 @@ exit 1
 #  check if we are root
 # ---------------------------------------------------------------------------
 
-CheckRoot()
+checkRoot()
 {
     if [ "${UID}" != 0 ]; then
-      printf "\nERROR : You need to be root to run this script!\n\n"
-      exit 1
+        printf "\nERROR : You need to be root to run this script!\n\n"
+        exit 1
     fi
 }
 
@@ -67,54 +72,54 @@ CheckRoot()
 #  initializations
 # ---------------------------------------------------------------------------
 
-Initializations()
+initializations()
 {
-    APTGET=$(command -v apt-get)
-    INSTALL="${APTGET} -y install"
+    aptget=$(command -v apt-get)
+    install="${aptget} -y install"
 
     # java runtime environment and browser plugin
-    JAVA1="openjdk-11-jre openjdk-11-jdk"
-    JAVA3="openjdk-13-jre openjdk-13-jdk"
-    JAVA6="openjdk-16-jre openjdk-16-jdk"
-    JAVA7="openjdk-17-jre openjdk-17-jdk"
+    java1="openjdk-11-jre openjdk-11-jdk"
+    java3="openjdk-13-jre openjdk-13-jdk"
+    java6="openjdk-16-jre openjdk-16-jdk"
+    java7="openjdk-17-jre openjdk-17-jdk"
 
     # packages for developping
-    DEVELOP="automake build-essential bison curl exuberant-ctags flex gawk \
+    develop="automake build-essential bison curl exuberant-ctags flex gawk \
         git gitk libaio1 libsvn-java maven meld ml-yacc libtool shellcheck"
 
     # some fun stuff
-    FUN="ascii bb bsdgames cool-retro-term cowsay espeak fbi figlet fortune \
+    fun="ascii bb bsdgames cool-retro-term cowsay espeak fbi figlet fortune \
         hollywood linuxlogo pi sl sysvbanner"
 
     # media play everything
-    MEDIA="ubuntu-restricted-extras ffmpeg icedax libdvd-pkg easytag id3tool \
+    media="ubuntu-restricted-extras ffmpeg icedax libdvd-pkg easytag id3tool \
         lame libxine2-ffmpeg mpg321 libavcodec-extra gstreamer1.0-libav"
 
     # network and security tools
-    NETTOOLS="chkrootkit cifs-utils davfs2 iftop iotop nfs-common nmap \
+    nettools="chkrootkit cifs-utils davfs2 iftop iotop nfs-common nmap \
         openssh-server traceroute unhide whois"
 
     # python3
-    PYTHON="python3.8 python3-pip python3-autopep8 python3-setuptools \
+    python="python3.8 python3-pip python3-autopep8 python3-setuptools \
         python3-wheel"
 
     # various handy tools
-    TOOLS="apcalc c3270 dbview gddrescue hardinfo hexedit htop lnav lynx mc \
+    tools="apcalc c3270 dbview gddrescue hardinfo hexedit htop lnav lynx mc \
         ncdu odt2txt tasksel tofrodos vim vim-scripts wipe tnef tree"
 
     # wifi network tools
-    WIFI="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
+    wifi="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
 
     # stuff for x
-    XTOOLS="bleachbit cheese flameshot gnote gparted gufw p7zip p7zip-rar \
+    xtools="bleachbit cheese flameshot gnote gparted gufw p7zip p7zip-rar \
         pinta remmina vlc vokoscreen wireshark x3270 xfonts-x3270-misc"
 
     # archive (zip) tools
-    ZIP="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
+    zip="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
 
     # everything (only java11 LTS)
-    ALL="${JAVA1} ${DEVELOP} ${FUN} ${MEDIA} ${NETTOOLS} ${PYTHON} ${TOOLS} \
-        ${WIFI} ${XTOOLS} ${ZIP}"
+    all="${java1} ${develop} ${fun} ${media} ${nettools} ${python} ${tools} \
+        ${wifi} ${xtools} ${zip}"
 
     # make sure we can see all autostart apps
     sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" \
@@ -125,22 +130,22 @@ Initializations()
 #  install all available updates
 # ---------------------------------------------------------------------------
 
-InstallUpdates()
+installUpdates()
 {
-    ${APTGET} update
-    ${APTGET} -y dist-upgrade
-    ${APTGET} autoremove
-    ${APTGET} autoclean
+    ${aptget} update
+    ${aptget} -y dist-upgrade
+    ${aptget} autoremove
+    ${aptget} autoclean
 }
 
 # ---------------------------------------------------------------------------
 #  install packages
 # ---------------------------------------------------------------------------
 
-InstallPackages()
+installPackages()
 {
-    for PACKAGE in ${PACKAGES}; do
-        ${INSTALL} "${PACKAGE}"
+    for package in ${packages}; do
+        ${install} "${package}"
     done
 }
 
@@ -150,39 +155,39 @@ InstallPackages()
 ##
 #############################################################################
 
-PrintHeader
-CheckRoot
-Initializations
+printHeader
+checkRoot
+initializations
 
-if [ "$1" = "" ]; then
-    ShowHelp
+if [[ -z "$1" ]]; then
+    showHelp
 fi
 
-while getopts "h1367dfmnptwxza" OPTION; do
+while getopts "h1367dfmnptwxza" option; do
 
-    case "${OPTION}" in
-        h) ShowHelp ;;
-        1) PACKAGES=${JAVA1} ;;
-        3) PACKAGES=${JAVA3} ;;
-        6) PACKAGES=${JAVA6} ;;
-        7) PACKAGES=${JAVA7} ;;
-        d) PACKAGES=${DEVELOP} ;;
-        f) PACKAGES=${FUN} ;;
-        m) PACKAGES=${MEDIA} ;;
-        n) PACKAGES=${NETTOOLS} ;;
-        p) PACKAGES=${PYTHON} ;;
-        t) PACKAGES=${TOOLS} ;;
-        w) PACKAGES=${WIFI} ;;
-        x) PACKAGES=${XTOOLS} ;;
-        z) PACKAGES=${ZIP} ;;
-        a) PACKAGES=${ALL} ;;
+    case "${option}" in
+        h) showHelp ;;
+        1) packages=${java1} ;;
+        3) packages=${java3} ;;
+        6) packages=${java6} ;;
+        7) packages=${java7} ;;
+        d) packages=${develop} ;;
+        f) packages=${fun} ;;
+        m) packages=${media} ;;
+        n) packages=${nettools} ;;
+        p) packages=${python} ;;
+        t) packages=${tools} ;;
+        w) packages=${wifi} ;;
+        x) packages=${xtools} ;;
+        z) packages=${zip} ;;
+        a) packages=${all} ;;
         *) exit 1 ;;
     esac
 
     printf "\n"
 
-    InstallUpdates
-    InstallPackages
+    installUpdates
+    installPackages
 
 done
 
