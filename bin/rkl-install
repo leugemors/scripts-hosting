@@ -38,9 +38,7 @@ Usage:
 Valid options are:
   -h   Show this help screen
   -1   OpenJDK Java 11 (LTS)
-  -3   OpenJDK Java 13
-  -6   OpenJDK Java 16
-  -7   OpenJDK Java 17
+  -7   OpenJDK Java 17 (LTS)
   -d   Developper tools
   -f   Some fun stuff
   -m   Media stuff to play everything
@@ -50,7 +48,7 @@ Valid options are:
   -w   WiFi network tools
   -x   Extra packages for x
   -z   Archive (zip) tools
-  -a   All of the above (only Java 11 LTS)
+  -a   All of the above (only Java 17 LTS)
 
 __EOT
 exit 1
@@ -79,8 +77,6 @@ initializations()
 
     # java runtime environment and browser plugin
     java1="openjdk-11-jre openjdk-11-jdk"
-    java3="openjdk-13-jre openjdk-13-jdk"
-    java6="openjdk-16-jre openjdk-16-jdk"
     java7="openjdk-17-jre openjdk-17-jdk"
 
     # packages for developping
@@ -104,8 +100,8 @@ initializations()
         python3-wheel"
 
     # various handy tools
-    tools="apcalc c3270 dbview gddrescue hardinfo hexedit htop lnav lynx mc \
-        ncdu odt2txt tasksel tofrodos vim vim-scripts wipe tnef tree"
+    tools="apcalc bat c3270 dbview gddrescue hardinfo hexedit htop lnav lynx \
+        mc ncdu odt2txt tasksel tofrodos vim vim-scripts wipe tnef tree"
 
     # wifi network tools
     wifi="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
@@ -118,7 +114,7 @@ initializations()
     zip="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
 
     # everything (only java11 LTS)
-    all="${java1} ${develop} ${fun} ${media} ${nettools} ${python} ${tools} \
+    all="${java7} ${develop} ${fun} ${media} ${nettools} ${python} ${tools} \
         ${wifi} ${xtools} ${zip}"
 
     # make sure we can see all autostart apps
@@ -163,13 +159,11 @@ if [[ -z "$1" ]]; then
     showHelp
 fi
 
-while getopts "h1367dfmnptwxza" option; do
+while getopts "h17dfmnptwxza" option; do
 
     case "${option}" in
         h) showHelp ;;
         1) packages=${java1} ;;
-        3) packages=${java3} ;;
-        6) packages=${java6} ;;
         7) packages=${java7} ;;
         d) packages=${develop} ;;
         f) packages=${fun} ;;
@@ -194,5 +188,3 @@ done
 printf "\nAll done!\n\n"
 
 exit 0
-
-### eof #####################################################################
