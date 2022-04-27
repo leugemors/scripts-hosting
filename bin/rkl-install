@@ -12,7 +12,7 @@
 
 set -eo pipefail
 
-version="0.30"
+version="0.31"
 
 # ---------------------------------------------------------------------------
 #  print a simple header
@@ -96,7 +96,7 @@ initializations()
         openssh-server traceroute unhide whois"
 
     # python3
-    python="python3.8 python3-pip python3-autopep8 python3-setuptools \
+    python="python3.9 python3-pip python3-autopep8 python3-setuptools \
         python3-wheel"
 
     # various handy tools
