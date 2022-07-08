@@ -5,6 +5,6 @@
 ##
 #############################################################################
 
-find . -type f -exec md5sum '{}' ';' | sort | uniq --all-repeated=separate -w 15 > dupes.txt
+find . -type f -exec md5sum '{}' ';' | sort | uniq --all-repeated=separate -w 15 | tee dupes.txt
 
 ### eof #####################################################################
