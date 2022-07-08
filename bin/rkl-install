@@ -12,16 +12,14 @@
 
 set -eo pipefail
 
-version="0.31"
-
 # ---------------------------------------------------------------------------
 #  print a simple header
 # ---------------------------------------------------------------------------
 
 printHeader()
 {
-    printf "\nInstall Tool v%s\n==================", "${version}"
-    printf "\nSetup an Ubuntu or Mint GNU/Linux system for my personal use.\n"
+    printf "\nInstall Tool\n============", "${version}"
+    printf "\nSetup an Ubuntu, Mint or Pop!_OS GNU/Linux system for my personal use.\n"
 }
 
 # ---------------------------------------------------------------------------
@@ -39,14 +37,16 @@ Valid options are:
   -h   Show this help screen
   -1   OpenJDK Java 11 (LTS)
   -7   OpenJDK Java 17 (LTS)
+  -8   OpenJDK Java 18
   -d   Developper tools
   -f   Some fun stuff
   -m   Media stuff to play everything
   -n   Network and security tools
+  -o   Some pop!_os specific tools
   -p   Python 3 with various libs
   -t   Various handy tools
   -w   WiFi network tools
-  -x   Extra packages for x
+  -x   Extra packages for X11
   -z   Archive (zip) tools
   -a   All of the above (only Java 17 LTS)
 
@@ -75,17 +75,19 @@ initializations()
     aptget=$(command -v apt-get)
     install="${aptget} -y install"
 
-    # java runtime environment and browser plugin
+    # java runtime environment
     java1="openjdk-11-jre openjdk-11-jdk"
     java7="openjdk-17-jre openjdk-17-jdk"
+    java8="openjdk-17-jre openjdk-18-jdk"
 
     # packages for developping
-    develop="automake build-essential bison curl exuberant-ctags flex gawk \
-        git gitk libaio1 libsvn-java maven meld ml-yacc libtool shellcheck"
+    develop="ansible automake build-essential bison curl exuberant-ctags flex \
+        gawk git gitk git-gui libaio1 libsvn-java maven meld ml-yacc libtool \
+        shellcheck"
 
     # some fun stuff
     fun="ascii bb bsdgames cool-retro-term cowsay espeak fbi figlet fortune \
-        hollywood linuxlogo pi sl sysvbanner"
+        hollywood linuxlogo lolcat pi sl sysvbanner"
 
     # media play everything
     media="ubuntu-restricted-extras ffmpeg icedax libdvd-pkg easytag id3tool \
@@ -95,13 +97,18 @@ initializations()
     nettools="chkrootkit cifs-utils davfs2 iftop iotop nfs-common nmap \
         openssh-server traceroute unhide whois"
 
+    # stuff specific for pop-os
+    popos="alacritty bat duf exa gnome-tweaks nemo nemo-font-manager \
+        nemo-gtkhash nemo-nextcloud plocate"
+
     # python3
-    python="python3.9 python3-pip python3-autopep8 python3-setuptools \
+    python="python3.10 python3-pip python3-autopep8 python3-setuptools \
         python3-wheel"
 
     # various handy tools
-    tools="apcalc bat c3270 dbview gddrescue hardinfo hexedit htop lnav lynx \
-        mc ncdu odt2txt tasksel tofrodos vim vim-scripts wipe tnef tree"
+    tools="apcalc c3270 calc dbview gcal gddrescue hardinfo hexedit htop lnav \
+        lynx mc ncdu odt2txt tasksel tofrodos vim vim-scripts wipe tnef tree \
+        zsh zsh-autosuggestions zsh-syntax-highlighting"
 
     # wifi network tools
     wifi="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
@@ -113,7 +120,7 @@ initializations()
     # archive (zip) tools
     zip="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
 
-    # everything (only java11 LTS)
+    # everything (only java17 LTS and no pop!_os stuff)
     all="${java7} ${develop} ${fun} ${media} ${nettools} ${python} ${tools} \
         ${wifi} ${xtools} ${zip}"
 
@@ -159,16 +166,18 @@ if [[ -z "$1" ]]; then
     showHelp
 fi
 
-while getopts "h17dfmnptwxza" option; do
+while getopts "h178dfmnoptwxza" option; do
 
     case "${option}" in
         h) showHelp ;;
         1) packages=${java1} ;;
         7) packages=${java7} ;;
+        8) packages=${java8} ;;
         d) packages=${develop} ;;
         f) packages=${fun} ;;
         m) packages=${media} ;;
         n) packages=${nettools} ;;
+        o) packages=${popos} ;;
         p) packages=${python} ;;
         t) packages=${tools} ;;
         w) packages=${wifi} ;;
@@ -188,3 +197,5 @@ done
 printf "\nAll done!\n\n"
 
 exit 0
+
+### eof #####################################################################
