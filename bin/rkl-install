@@ -18,7 +18,7 @@ set -eo pipefail
 
 printHeader()
 {
-    printf "\nInstall Tool\n============", "${version}"
+    printf "\nInstall Tool\n============"
     printf "\nSetup an Ubuntu, Mint or Pop!_OS GNU/Linux system for my personal use.\n"
 }
 
@@ -98,7 +98,7 @@ initializations()
         openssh-server traceroute unhide whois"
 
     # stuff specific for pop-os
-    popos="alacritty bat duf exa gnome-tweaks nemo nemo-font-manager \
+    popos="alacritty bat colordiff duf exa gnome-tweaks nemo nemo-font-manager \
         nemo-gtkhash nemo-nextcloud plocate"
 
     # python3
