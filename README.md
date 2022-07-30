@@ -5,6 +5,7 @@ Don't think they will be useful to anyone else, but feel free to take a look.
 
 ## bin
 
+- **cht**: Easy way to lookup cheat sheets for Linux commands.
 - **diskfree**: A simple one liner to show the amount of available disk space.
 - **dupes**: Find duplicates using MD5 hashes, recursivly starting from the current directory.
 - **hernoem**: Rename files to lowercase and remove all spaces and other junk.
