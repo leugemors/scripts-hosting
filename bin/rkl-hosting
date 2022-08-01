@@ -33,8 +33,9 @@ fi
 # ---------------------------------------------------------------------------
 
 INSTALL_WEB_SERVER="yes"
-INSTALL_PHP="yes"
 INSTALL_DATABASE="yes"
+INSTALL_PHP="yes"
+PHP_VERSION="8.1"
 
 # ---------------------------------------------------------------------------
 #  first install all available updates
@@ -87,19 +88,20 @@ fi
 if [ $INSTALL_PHP = "yes" ]; then
     add-apt-repository -y ppa:ondrej/php
     $APT update
-    $INSTALL php8.1-cgi
-    $INSTALL php8.1-curl
-    $INSTALL php8.1-fpm
-    $INSTALL php8.1-gd
-    $INSTALL php8.1-imagick
-    $INSTALL php8.1-json
-    $INSTALL php8.1-mbstring
-    $INSTALL php8.1-mysql
-    $INSTALL php8.1-opcache
-    $INSTALL php8.1-xml
-    $INSTALL php8.1-zip
-    systemctl start php8.1-fpm.service
-    systemctl enable php8.1-fpm.service
+    $INSTALL php${PHP_VERSION}-cgi
+    $INSTALL php${PHP_VERSION}-curl
+    $INSTALL php${PHP_VERSION}-fpm
+    $INSTALL php${PHP_VERSION}-gd
+    $INSTALL php${PHP_VERSION}-imagick
+    $INSTALL php${PHP_VERSION}-intl
+    $INSTALL php${PHP_VERSION}-json
+    $INSTALL php${PHP_VERSION}-mbstring
+    $INSTALL php${PHP_VERSION}-mysql
+    $INSTALL php${PHP_VERSION}-opcache
+    $INSTALL php${PHP_VERSION}-xml
+    $INSTALL php${PHP_VERSION}-zip
+    systemctl start php${PHP_VERSION}-fpm.service
+    systemctl enable php${PHP_VERSION}-fpm.service
 fi
 
 # ---------------------------------------------------------------------------
