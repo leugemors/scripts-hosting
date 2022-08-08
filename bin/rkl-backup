@@ -224,7 +224,7 @@ fi
 if [ "${MYSQL}" = "yes" ] || [ "${POSTGRESQL}" = "yes" ]; then
 
     # first delete all temporary database dump files (to avoid using rm -rf)
-    rm "${TEMPDIR}/*"
+    rm ${TEMPDIR}/*
 
     RESULT=$?
     if [ "${RESULT}" != 0 ]; then
@@ -232,7 +232,7 @@ if [ "${MYSQL}" = "yes" ] || [ "${POSTGRESQL}" = "yes" ]; then
     fi
 
     # then delete the temporary directory
-    rmdir "${TEMPDIR}"
+    rmdir ${TEMPDIR}
 
     RESULT=$?
     if [ "${RESULT}" != 0 ]; then
