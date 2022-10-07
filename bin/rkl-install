@@ -6,7 +6,7 @@
 ##   | |  |   <| |   https://www.github.com/leugemors/
 ##   |_|  |_|\_\_|
 ##
-##   script to setup an ubuntu/mint gnu/linux system
+##   script to setup an mint/popos gnu/linux system
 ##
 #############################################################################
 
@@ -19,7 +19,7 @@ set -eo pipefail
 printHeader()
 {
     printf "\nInstall Tool\n============"
-    printf "\nSetup an Ubuntu, Mint or Pop!_OS GNU/Linux system for my personal use.\n"
+    printf "\nSetup an Mint or Pop! OS GNU/Linux system for my personal use.\n"
 }
 
 # ---------------------------------------------------------------------------
@@ -37,18 +37,18 @@ Valid options are:
   -h   Show this help screen
   -1   OpenJDK Java 11 (LTS)
   -7   OpenJDK Java 17 (LTS)
-  -8   OpenJDK Java 18
   -d   Developper tools
   -f   Some fun stuff
+  -k   Virtualization with KVM/QEMU
   -m   Media stuff to play everything
   -n   Network and security tools
-  -o   Some pop!_os specific tools
   -p   Python 3 with various libs
+  -s   Some suckless tools
   -t   Various handy tools
   -w   WiFi network tools
   -x   Extra packages for X11
   -z   Archive (zip) tools
-  -a   All of the above (only Java 17 LTS)
+  -a   All of the above (only Java 17 LTS and no suckless tools)
 
 __EOT
 exit 1
@@ -78,16 +78,17 @@ initializations()
     # java runtime environment
     java1="openjdk-11-jre openjdk-11-jdk"
     java7="openjdk-17-jre openjdk-17-jdk"
-    java8="openjdk-17-jre openjdk-18-jdk"
 
     # packages for developping
     develop="ansible automake build-essential bison curl exuberant-ctags flex \
-        gawk git gitk git-gui libaio1 libsvn-java maven meld ml-yacc libtool \
-        shellcheck"
+        gawk git gitk git-gui jq libaio1 libtool maven meld ml-yacc shellcheck"
 
     # some fun stuff
     fun="ascii bb bsdgames cool-retro-term cowsay espeak fbi figlet fortune \
         hollywood linuxlogo lolcat pi sl sysvbanner"
+
+    # virtualization with kvm/qemu
+    kvm="qemu-kvm libvirt-daemon-system virtinst bridge-utils libosinfo-bin"
 
     # media play everything
     media="ubuntu-restricted-extras ffmpeg icedax libdvd-pkg easytag id3tool \
@@ -97,32 +98,31 @@ initializations()
     nettools="chkrootkit cifs-utils davfs2 iftop iotop nfs-common nmap \
         openssh-server traceroute unhide whois"
 
-    # stuff specific for pop-os
-    popos="alacritty bat colordiff duf exa gnome-tweaks nemo nemo-font-manager \
-        nemo-gtkhash nemo-nextcloud plocate"
-
     # python3
     python="python3.10 python3-pip python3-autopep8 python3-setuptools \
         python3-wheel"
 
+    # some suckless tools
+    suckless="alacritty bat colordiff duf exa plocate"
+
     # various handy tools
     tools="apcalc c3270 calc dbview gcal gddrescue hardinfo hexedit htop lnav \
-        lynx mc ncdu odt2txt tasksel tofrodos vim vim-scripts wipe tnef tree \
-        zsh zsh-autosuggestions zsh-syntax-highlighting"
+        lynx mc ncdu odt2txt plocate tasksel tnef tofrodos vim vim-scripts wipe \
+        tree zsh zsh-autosuggestions zsh-syntax-highlighting"
 
     # wifi network tools
     wifi="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
 
     # stuff for x
-    xtools="bleachbit cheese flameshot gnote gparted gufw p7zip p7zip-rar \
-        pinta remmina vlc vokoscreen wireshark x3270 xfonts-x3270-misc"
+    xtools="bleachbit cheese flameshot gnome-tweaks gnote gparted gufw p7zip \
+        p7zip-rar pinta remmina vlc vokoscreen wireshark x3270 xfonts-x3270-misc"
 
     # archive (zip) tools
     zip="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
 
-    # everything (only java17 LTS and no pop!_os stuff)
-    all="${java7} ${develop} ${fun} ${media} ${nettools} ${python} ${tools} \
-        ${wifi} ${xtools} ${zip}"
+    # everything (only java17 LTS and no suckless tools)
+    all="${java7} ${develop} ${fun} ${kvm} ${media} ${nettools} ${python} \
+        ${tools} ${wifi} ${xtools} ${zip}"
 
     # make sure we can see all autostart apps
     sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" \
@@ -166,19 +166,19 @@ if [[ -z "$1" ]]; then
     showHelp
 fi
 
-while getopts "h178dfmnoptwxza" option; do
+while getopts "h17dfkmnpstwxza" option; do
 
     case "${option}" in
         h) showHelp ;;
         1) packages=${java1} ;;
         7) packages=${java7} ;;
-        8) packages=${java8} ;;
         d) packages=${develop} ;;
         f) packages=${fun} ;;
+        k) packages=${kvm} ;;
         m) packages=${media} ;;
         n) packages=${nettools} ;;
-        o) packages=${popos} ;;
         p) packages=${python} ;;
+        s) packages=${suckless} ;;
         t) packages=${tools} ;;
         w) packages=${wifi} ;;
         x) packages=${xtools} ;;
