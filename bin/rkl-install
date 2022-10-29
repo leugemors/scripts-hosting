@@ -45,7 +45,6 @@ Valid options are:
   -p   Python 3 with various libs
   -s   Some suckless tools
   -t   Various handy tools
-  -w   WiFi network tools
   -x   Extra packages for X11
   -z   Archive (zip) tools
   -a   All of the above (only Java 17 LTS and no suckless tools)
@@ -84,11 +83,12 @@ initializations()
         gawk git gitk git-gui jq libaio1 libtool maven meld ml-yacc shellcheck"
 
     # some fun stuff
-    fun="ascii bb bsdgames cool-retro-term cowsay espeak fbi figlet fortune \
+    fun="ascii bb bsdgames cool-retro-term cowsay espeak fbi feh figlet fortune \
         hollywood linuxlogo lolcat pi sl sysvbanner"
 
     # virtualization with kvm/qemu
-    kvm="qemu-kvm libvirt-daemon-system virtinst bridge-utils libosinfo-bin"
+    kvm="qemu-kvm libvirt-daemon-system virtinst bridge-utils libosinfo-bin \
+        virt-manager"
 
     # media play everything
     media="ubuntu-restricted-extras ffmpeg icedax libdvd-pkg easytag id3tool \
@@ -107,15 +107,13 @@ initializations()
 
     # various handy tools
     tools="apcalc c3270 calc dbview gcal gddrescue hardinfo hexedit htop lnav \
-        lynx mc ncdu odt2txt plocate tasksel tnef tofrodos vim vim-scripts wipe \
-        tree zsh zsh-autosuggestions zsh-syntax-highlighting"
-
-    # wifi network tools
-    wifi="aircrack-ng cowpatty hcxdumptool kismet reaver tshark wavemon"
+        lynx mc ncdu newsboat odt2txt plocate tasksel tnef tofrodos vim vim-scripts \
+        wipe tree weechat zsh zsh-autosuggestions zsh-syntax-highlighting"
 
     # stuff for x
-    xtools="bleachbit cheese flameshot gnome-tweaks gnote gparted gufw p7zip \
-        p7zip-rar pinta remmina vlc vokoscreen wireshark x3270 xfonts-x3270-misc"
+    xtools="bleachbit cheese flameshot gnome-tweaks gnote gparted gufw keepassxc \
+        p7zip p7zip-rar pinta remmina vlc vokoscreen wireshark x3270 \
+        xfonts-x3270-misc"
 
     # archive (zip) tools
     zip="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
@@ -137,7 +135,7 @@ installUpdates()
 {
     ${aptget} update
     ${aptget} -y dist-upgrade
-    ${aptget} autoremove
+    ${aptget} -y autoremove
     ${aptget} autoclean
 }
 
@@ -166,7 +164,7 @@ if [[ -z "$1" ]]; then
     showHelp
 fi
 
-while getopts "h17dfkmnpstwxza" option; do
+while getopts "h17dfkmnpstxza" option; do
 
     case "${option}" in
         h) showHelp ;;
@@ -180,7 +178,6 @@ while getopts "h17dfkmnpstwxza" option; do
         p) packages=${python} ;;
         s) packages=${suckless} ;;
         t) packages=${tools} ;;
-        w) packages=${wifi} ;;
         x) packages=${xtools} ;;
         z) packages=${zip} ;;
         a) packages=${all} ;;
