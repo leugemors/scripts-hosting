@@ -47,7 +47,7 @@ Valid options are:
   -t   Various handy tools
   -x   Extra packages for X11
   -z   Archive (zip) tools
-  -a   All of the above (only Java 17 LTS and no suckless tools)
+  -a   All of the above (only Java 17)
 
 __EOT
 exit 1
@@ -120,7 +120,7 @@ initializations()
 
     # everything (only java17 LTS and no suckless tools)
     all="${java7} ${develop} ${fun} ${kvm} ${media} ${nettools} ${python} \
-        ${tools} ${wifi} ${xtools} ${zip}"
+        ${suckless} ${tools} ${wifi} ${xtools} ${zip}"
 
     # make sure we can see all autostart apps
     sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" \
