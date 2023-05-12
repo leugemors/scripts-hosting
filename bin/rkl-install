@@ -106,9 +106,10 @@ initializations()
     suckless="alacritty bat colordiff duf entr exa fzf plocate ripgrep tldr zoxide"
 
     # various handy tools
-    tools="apcalc c3270 calc dbview gcal gddrescue hardinfo hexedit htop lnav \
-        lynx mc ncdu newsboat odt2txt plocate tasksel tnef tofrodos vim vim-scripts \
-        wipe tree weechat zsh zsh-autosuggestions zsh-syntax-highlighting"
+    tools="apcalc c3270 calc dbview gcal gddrescue hardinfo hexedit htop kitty
+        lnav lynx mc ncdu newsboat odt2txt rename plocate sshpass tasksel \
+        terninator tidy tmux tnef tofrodos vim vim-scripts wipe tree weechat \
+        zsh zsh-autosuggestions zsh-syntax-highlighting"
 
     # stuff for x
     xtools="bleachbit cheese flameshot gnome-tweaks gnote gparted gufw keepassxc \
@@ -118,7 +119,7 @@ initializations()
     # archive (zip) tools
     zip="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
 
-    # everything (only java17 LTS and no suckless tools)
+    # everything (only java17 LTS)
     all="${java7} ${develop} ${fun} ${kvm} ${media} ${nettools} ${python} \
         ${suckless} ${tools} ${xtools} ${zip}"
 
