@@ -9,8 +9,8 @@
 #  get the ip addresses
 # ---------------------------------------------------------------------------
 
-#HOST=`hostname -i`
-#LAN="10.209.0.0/20"
+#host=`hostname -i`
+#lan="192.168.33.0/24"
 
 # ---------------------------------------------------------------------------
 #  first disable and reset all current firewall rules
@@ -30,83 +30,87 @@ ufw default allow outgoing
 #  open port for ssh (max 6 tries per second)
 # ---------------------------------------------------------------------------
 
-ufw limit 22/tcp     # SSH
+ufw limit 22/tcp
 
 # ---------------------------------------------------------------------------
 #  open ports for dns server
 # ---------------------------------------------------------------------------
 
-#ufw allow 53/tcp    # BIND
-#ufw allow 53/udp    # BIND
+#ufw allow 53/tcp
+#ufw allow 53/udp
 
 # ---------------------------------------------------------------------------
 #  open port for ntpd
 # ---------------------------------------------------------------------------
 
-#ufw allow 123        # NTP
+#ufw allow 123
 
 # ---------------------------------------------------------------------------
-#  open ports for nis
+#  open ports for nis (ypbind)
 # ---------------------------------------------------------------------------
 
-#ufw allow 111        # PORTMAPPER
-#ufw allow 985        # YPBIND
-#ufw allow 986        # YPBIND
+#ufw allow 111        # portmapper
+#ufw allow 985        # ypbind
+#ufw allow 986        # ypbind
 
 # ---------------------------------------------------------------------------
-#  open ports for the zimbra mail server
+#  open ports for the mail server
 # ---------------------------------------------------------------------------
 
-#ufw allow 25/tcp    # SMTP
-#ufw allow 80/tcp    # HTTP
-#ufw allow 110/tcp   # POP3
-#ufw allow 143/tcp   # IMAP
-#ufw allow 443/tcp   # HTTPS
-#ufw allow 465/tcp   # SSMTP
-#ufw allow 587/tcp   # TLS
-#ufw allow 993/tcp   # IMAPS
-#ufw allow 995/tcp   # POP3S
-#ufw allow 7025/tcp  # LMTP
-#ufw limit 7071/tcp  # ADMIN
-#ufw limit 8080/tcp  # HTTP
-#ufw limit 8443/tcp  # HTTPS
-#ufw allow from $LAN to $HOST port 389 proto tcp  # LDAP
+#ufw allow 25/tcp    # smtp
+#ufw allow 110/tcp   # pop3
+#ufw allow 143/tcp   # imap
+#ufw allow 465/tcp   # ssmtp
+#ufw allow 587/tcp   # tls
+#ufw allow 993/tcp   # imaps
+#ufw allow 995/tcp   # pop3s
+
+#ufw allow 7025/tcp  # lmtp
+#ufw limit 7071/tcp  # zimbra admin
+
+#ufw allow 80/tcp    # http
+#ufw allow 443/tcp   # https
+
+#ufw limit 8080/tcp  # http
+#ufw limit 8443/tcp  # https
+
+#ufw allow from ${lan} to ${host} port 389 proto tcp  # ldap
 
 # ---------------------------------------------------------------------------
 #  open ports for the web server
 # ---------------------------------------------------------------------------
 
-#ufw allow 80/tcp     # HTTP
-#ufw allow 443/tcp    # HTTPS
+#ufw allow 80/tcp     # http
+#ufw allow 443/tcp    # https
 
-#ufw allow 8080/tcp   # TOMCAT
-#ufw allow 8443/tcp   # TOMCAT
+#ufw allow 8080/tcp   # tomcat
+#ufw allow 8443/tcp   # tomcat ssl
 
 # ---------------------------------------------------------------------------
 #  open port for database server (only from lan)
 # ---------------------------------------------------------------------------
 
-#ufw allow from $LAN to $HOST port 3306 proto tcp  # MARIADB
-#ufw allow from $LAN to $HOST port 5432 proto tcp  # POSTGRESQL
+#ufw allow from ${lan} to ${host} port 3306 proto tcp  # mariadb
+#ufw allow from ${lan} to ${host} port 5432 proto tcp  # postgresql
 
 # ---------------------------------------------------------------------------
 #  open ports for samba (only local)
 # ---------------------------------------------------------------------------
 
-#ufw allow from $LAN to $HOST port 137 proto udp
-#ufw allow from $LAN to $HOST port 138 proto udp
-#ufw allow from $LAN to $HOST port 139 proto tcp
-#ufw allow from $LAN to $HOST port 445 proto tcp
+#ufw allow from ${lan} to ${host} port 137 proto udp
+#ufw allow from ${lan} to ${host} port 138 proto udp
+#ufw allow from ${lan} to ${host} port 139 proto tcp
+#ufw allow from ${lan} to ${host} port 445 proto tcp
 
 # ---------------------------------------------------------------------------
 #  open miscelaneous ports
 # ---------------------------------------------------------------------------
 
-#ufw allow 5666/tcp   # NRPE
-#ufw allow 5900/tcp   # VNC
-#ufw allow 17500/tcp  # DROPBOX
-#ufw allow 10050/tcp  # ZABBIX AGENT
-#ufw allow 10051/tcp  # ZABBIX SERVER
+#ufw allow 5666/tcp   # nrpe
+#ufw allow 5900/tcp   # vnc
+#ufw allow 17500/tcp  # dropboX
+#ufw allow 10050/tcp  # zabbix agent
+#ufw allow 10051/tcp  # zabbix server
 
 # ---------------------------------------------------------------------------
 #  configuring an ip blacklist
