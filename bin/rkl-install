@@ -42,7 +42,7 @@ Valid options are:
   -k   Virtualization with KVM/QEMU
   -m   Media stuff to play everything
   -n   Network and security tools
-  -p   Python 3 with various libs
+  -p   Python with various libs
   -s   Some suckless tools
   -t   Various handy tools
   -x   Extra packages for X11
@@ -84,7 +84,7 @@ initializations()
 
     # some fun stuff
     fun="ascii bb bsdgames cool-retro-term cowsay espeak fbi feh figlet fortune \
-        hollywood linuxlogo lolcat pi sl sysvbanner"
+        hollywood linuxlogo lolcat neofetch pi sl sysvbanner"
 
     # virtualization with kvm/qemu
     kvm="qemu-kvm libvirt-daemon-system virtinst bridge-utils libosinfo-bin \
@@ -122,10 +122,6 @@ initializations()
     # everything (only java17 LTS)
     all="${java7} ${develop} ${fun} ${kvm} ${media} ${nettools} ${python} \
         ${suckless} ${tools} ${xtools} ${zip}"
-
-    # make sure we can see all autostart apps
-    sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" \
-        /etc/xdg/autostart/*.desktop
 }
 
 # ---------------------------------------------------------------------------
