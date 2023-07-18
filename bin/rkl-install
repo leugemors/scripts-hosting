@@ -108,7 +108,7 @@ initializations()
     # various handy tools
     tools="apcalc c3270 calc dbview gcal gddrescue hardinfo hexedit htop kitty
         lnav lynx mc ncdu newsboat odt2txt rename plocate sshpass tasksel \
-        terninator tidy tmux tnef tofrodos vim vim-scripts wipe tree weechat \
+        terminator tidy tmux tnef tofrodos vim vim-scripts wipe tree weechat \
         zsh zsh-autosuggestions zsh-syntax-highlighting"
 
     # stuff for x
