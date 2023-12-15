@@ -67,6 +67,11 @@ checkRoot()
 
 # ---------------------------------------------------------------------------
 #  initializations
+#
+#  ARCHIVE
+#  - bison
+#  - flex
+#  - ml-yacc
 # ---------------------------------------------------------------------------
 
 initializations()
@@ -79,12 +84,12 @@ initializations()
     java7="openjdk-17-jre openjdk-17-jdk"
 
     # packages for developping
-    develop="ansible automake build-essential bison curl exuberant-ctags flex \
-        gawk git gitk git-gui jq libaio1 libtool maven meld ml-yacc shellcheck"
+    develop="ansible automake build-essential curl exuberant-ctags gawk git \
+        gitk git-gui jq libaio1 libtool maven meld shellcheck"
 
     # some fun stuff
-    fun="ascii bb bsdgames cool-retro-term cowsay espeak fbi feh figlet fortune \
-        hollywood linuxlogo lolcat neofetch pi sl sysvbanner"
+    fun="ascii bb bsdgames cool-retro-term cowsay espeak fbi feh figlet \
+        fortune hollywood linuxlogo lolcat neofetch pfetch pi sl sysvbanner"
 
     # virtualization with kvm/qemu
     kvm="qemu-kvm libvirt-daemon-system virtinst bridge-utils libosinfo-bin \
@@ -95,7 +100,7 @@ initializations()
         lame libxine2-ffmpeg mpg321 libavcodec-extra gstreamer1.0-libav"
 
     # network and security tools
-    nettools="chkrootkit cifs-utils davfs2 iftop iotop nfs-common nmap \
+    nettools="chkrootkit cifs-utils davfs2 iftop iotop nfs-common ngrep nmap \
         openssh-server traceroute unhide whois"
 
     # python3
@@ -103,18 +108,19 @@ initializations()
         python3-wheel"
 
     # some suckless tools
-    suckless="alacritty bat colordiff duf entr exa fzf plocate ripgrep tldr zoxide"
+    suckless="alacritty bat colordiff duf entr exa fzf plocate ripgrep tldr \
+        zoxide"
 
     # various handy tools
-    tools="apcalc c3270 calc dbview gcal gddrescue hardinfo hexedit htop kitty
+    tools="apcalc c3270 calc dbview gcal gddrescue hardinfo hexedit htop \
         lnav lynx mc ncdu newsboat odt2txt rename plocate sshpass tasksel \
-        terminator tidy tmux tnef tofrodos vim vim-scripts wipe tree weechat \
-        zsh zsh-autosuggestions zsh-syntax-highlighting"
+        terminator tidy tmux tnef tofrodos toot vim vim-scripts wipe tree \
+	weechat zsh zsh-autosuggestions zsh-syntax-highlighting"
 
     # stuff for x
-    xtools="bleachbit cheese flameshot gnome-tweaks gnote gparted gufw keepassxc \
-        p7zip p7zip-rar pinta remmina vlc vokoscreen wireshark x3270 \
-        xfonts-x3270-misc"
+    xtools="bleachbit cheese flameshot filezilla gnome-tweaks gnote gparted \
+        gufw keepassxc p7zip p7zip-rar pinta remmina vlc vokoscreen wireshark \
+        x3270 xfonts-x3270-misc"
 
     # archive (zip) tools
     zip="arc arj cabextract lzop nomarch pax rar sharutils unrar unzip zip"
