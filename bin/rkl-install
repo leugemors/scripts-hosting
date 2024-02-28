@@ -100,8 +100,8 @@ initializations()
         lame libxine2-ffmpeg mpg321 libavcodec-extra gstreamer1.0-libav"
 
     # network and security tools
-    nettools="chkrootkit cifs-utils davfs2 iftop iotop nfs-common ngrep nmap \
-        openssh-server traceroute unhide whois"
+    nettools="apache2-utils chkrootkit cifs-utils davfs2 iftop iotop \
+        nfs-common ngrep nmap openssh-server traceroute unhide whois"
 
     # python3
     python="python3.10 python3-pip python3-autopep8 python3-setuptools \
@@ -119,7 +119,7 @@ initializations()
 
     # stuff for x
     xtools="bleachbit cheese flameshot filezilla gnome-tweaks gnote gparted \
-        gufw keepassxc p7zip p7zip-rar pinta remmina vlc vokoscreen wireshark \
+        gufw keepassxc p7zip p7zip-rar remmina vlc vokoscreen wireshark \
         x3270 xfonts-x3270-misc"
 
     # archive (zip) tools
