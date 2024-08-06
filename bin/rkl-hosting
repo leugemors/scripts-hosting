@@ -35,7 +35,7 @@ fi
 INSTALL_WEB_SERVER="yes"
 INSTALL_DATABASE="yes"
 INSTALL_PHP="yes"
-PHP_VERSION="8.1"
+PHP_VERSION="8.2" # change this to the most recent php version
 
 # ---------------------------------------------------------------------------
 #  first install all available updates
@@ -61,12 +61,11 @@ $INSTALL mc
 $INSTALL mlocate
 $INSTALL mutt
 $INSTALL net-tools
-$INSTALL tasksel
 $INSTALL traceroute
 $INSTALL tree
 $INSTALL unhide
 $INSTALL unzip
-$INSTALL vim 
+$INSTALL vim
 $INSTALL zip
 
 # ---------------------------------------------------------------------------
@@ -86,8 +85,6 @@ fi
 # ---------------------------------------------------------------------------
 
 if [ $INSTALL_PHP = "yes" ]; then
-    add-apt-repository -y ppa:ondrej/php
-    $APT update
     $INSTALL php${PHP_VERSION}-cgi
     $INSTALL php${PHP_VERSION}-curl
     $INSTALL php${PHP_VERSION}-fpm
