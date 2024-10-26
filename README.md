@@ -6,12 +6,15 @@ Don't think they will be useful to anyone else, but feel free to take a look.
 ## bin
 
 - **cht**: Easy way to lookup cheat sheets for Linux commands.
+- create-index.sh: Script to create a nice index file for the vim plugin VimWiki.
 - **diskfree**: A simple one liner to show the amount of available disk space.
 - **dupes**: Find duplicates using MD5 hashes, recursivly starting from the current directory.
 - **hernoem**: Rename files to lowercase and remove all spaces and other junk.
 - **list**: Generate a list of all installed packages on my Linux system.
 - **update**: Script to install all available updates.
 - **zoek**: Make searching for packages in the repository a bit easier.
+
+---
 
 - **rkl-backup**: My personal backup tool. You will also need `rkl-backup.conf` from the `/etc` directory.
 - **rkl-config-gcc**: Install all avaialble versions of GCC and update update-alternatives accordingly. Don't ask, but I needed this at some point.
@@ -25,6 +28,6 @@ Don't think they will be useful to anyone else, but feel free to take a look.
 
 - **rkl-backup.conf.example**: Example configuration file for `rkl-backup`.
 
+## License
 
-# License
 [GPL](https://choosealicense.com/licenses/gpl/)
